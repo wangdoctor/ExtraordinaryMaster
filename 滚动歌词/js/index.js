@@ -6,11 +6,12 @@
  */
 function parseLrc() {
   let result = [];
-  for (const key in lrcJSON) {
-    const element = lrcJSON[key];
+  let lrcList = lrc.split("\n");
+  for (const key in lrcList) {
+    const element = lrcList[key].split("]");
     let obj = {
-      time: parseTime(key.substring(1, key.length - 1)),
-      words: element,
+      time: parseTime(element[0].substring(1)),
+      words: element[1],
     };
     result.push(obj);
   }
@@ -77,13 +78,17 @@ function setOffset() {
   if (offset < 0) {
     offset = 0;
   }
-  if(offset > maxOffset) {
+  if (offset > maxOffset) {
     offset = maxOffset;
   }
   doms.ul.querySelector(".active")?.classList.remove("active");
   doms.ul.style.transform = `translateY(${-offset}px)`;
   doms.ul.children[index]?.classList.add("active");
 }
+
+/**
+ * 添加播放监听事件，把播放时间同步到歌词
+ */
 doms.audio.addEventListener("timeupdate", () => {
   setOffset();
 });
