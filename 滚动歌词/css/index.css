@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #000000;
+    color: #bbb; 
+    text-align: center;
+}
+audio{
+width: 450px;
+margin: 30px 0;
+}
+.container{
+    height: 420px;
+    overflow: hidden;
+}
+.container ul{
+    transition: 0.6s;
+    /* transform: translateY(-600px); */
+}
+.container ul li{
+    height: 30px;
+    line-height: 30px;
+    transition: 0.2s;
+    list-style: none;
+}
+.container li.active{
+    color: #ffffff;
+    font-weight: bold;
+    transform: scale(1.2);
+}
